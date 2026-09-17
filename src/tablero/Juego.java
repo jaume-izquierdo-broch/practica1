@@ -101,7 +101,7 @@ public class Juego extends Application {
 			anyadeMenu();
 			anyadeGrid(numFilas, numColumnas);
 			anyadePanelEstado("Disparos: " + disparos +  "    Barcos restantes: " + quedan);
-			Scene scene = new Scene(panelPrincipal, 300, 300);
+			Scene scene = new Scene(panelPrincipal, 350, 350);
 			stage.setTitle("Hundir la flota");
 			stage.setScene(scene);
 			stage.show();
@@ -139,6 +139,32 @@ public class Juego extends Application {
 		    buttons = new Button[nf][nc];
 		    ButtonListener listener = new ButtonListener();
 
+		    for (int j = 0; j < nc; j++) {
+		        Label numero = new Label(String.valueOf(j + 1));
+
+		        numero.setMinSize(30, 30);
+		        numero.setMaxSize(30, 30);
+		        numero.setAlignment(Pos.CENTER);
+
+		        panelGrid.add(numero, j + 1, 0);
+		    }
+
+		    for (int i = 0; i < nf; i++) {
+		        Label letraIzquierda = new Label(String.valueOf((char) ('A' + i)));
+
+		        letraIzquierda.setMinSize(30, 30);
+		        letraIzquierda.setMaxSize(30, 30);
+		        letraIzquierda.setAlignment(Pos.CENTER);
+		        
+		        Label letraDerecha = new Label(String.valueOf((char) ('A' + i)));
+		        letraDerecha.setMinSize(30, 30);
+		        letraDerecha.setMaxSize(30, 30);
+		        letraDerecha.setAlignment(Pos.CENTER);
+
+		        panelGrid.add(letraIzquierda, 0, i + 1);
+		        panelGrid.add(letraDerecha, nc + 1, i + 1);
+		    }
+		    
 		    for (int i = 0; i < nf; i++) {
 		        for (int j = 0; j < nc; j++) {
 		            Button b = new Button();
@@ -152,7 +178,7 @@ public class Juego extends Application {
 		            
 		            b.setOnAction(listener);
 		            buttons[i][j] = b;
-		            panelGrid.add(b, j, i);
+		            panelGrid.add(b, j + 1, i + 1);
 		        }
 		    }
 		    panelGrid.setAlignment(Pos.CENTER);
